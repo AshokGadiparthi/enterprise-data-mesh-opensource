@@ -1,0 +1,45 @@
+# Define the DataProduct type
+type DataProduct {
+    id: ID!
+    name: String!
+    description: String
+    domain: String!
+    owner: String!
+    createdAt: String!
+    updatedAt: String!
+}
+
+# Define the Query type
+type Query {
+    # Get all data products
+    getDataProducts: [DataProduct!]!
+
+    # Get a data product by ID
+    getDataProductById(id: ID!): DataProduct
+
+    # Search data products by name or domain
+    searchDataProducts(query: String!): [DataProduct!]!
+}
+
+# Define the Mutation type
+type Mutation {
+    # Create a new data product
+    createDataProduct(
+        name: String!
+        description: String
+        domain: String!
+        owner: String!
+    ): DataProduct!
+
+    # Update an existing data product
+    updateDataProduct(
+        id: ID!
+        name: String
+        description: String
+        domain: String
+        owner: String
+    ): DataProduct!
+
+    # Delete a data product by ID
+    deleteDataProduct(id: ID!): Boolean!
+}

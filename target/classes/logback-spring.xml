@@ -1,0 +1,26 @@
+<configuration>
+    <!-- Define the JSON appender -->
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- Customize the JSON output -->
+            <fieldNames>
+                <timestamp>timestamp</timestamp>
+                <level>level</level>
+                <thread>thread</thread>
+                <logger>logger</logger>
+                <message>message</message>
+                <stackTrace>stack_trace</stackTrace>
+            </fieldNames>
+        </encoder>
+    </appender>
+
+    <!-- Set the root logger to use the JSON appender -->
+    <root level="INFO">
+        <appender-ref ref="JSON"/>
+    </root>
+
+    <!-- Add additional loggers for specific packages -->
+    <logger name="com.datamesh" level="DEBUG" additivity="false">
+        <appender-ref ref="JSON"/>
+    </logger>
+</configuration>
